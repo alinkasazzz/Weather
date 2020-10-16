@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Weather">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/search_view"
@@ -16,8 +21,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:paddingStart="52dp"
-        android:paddingEnd="0dp"
         android:paddingTop="9dp"
+        android:paddingEnd="0dp"
         android:text="@string/searchText"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,12 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/search"
+        android:contentDescription="@string/searchDes"
         app:layout_constraintBottom_toBottomOf="@+id/search_view"
         app:layout_constraintEnd_toEndOf="@+id/search_view"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="@+id/search_view"
-        app:layout_constraintTop_toTopOf="@+id/search_view"
-        android:contentDescription="@string/searchDes" />
+        app:layout_constraintTop_toTopOf="@+id/search_view" />
 
     <TextView
         android:id="@+id/city0"
@@ -45,11 +50,9 @@
         android:text="@string/cityText"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
     <TextView
         android:id="@+id/city1"
@@ -59,7 +62,7 @@
         android:text="@string/cityText"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city0" />
 
@@ -71,7 +74,7 @@
         android:text="@string/cityText"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city1" />
 
@@ -83,7 +86,7 @@
         android:text="@string/cityText"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city4"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city2" />
 
@@ -94,8 +97,8 @@
         android:gravity="center"
         android:text="@string/cityText"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city5"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city3" />
 
@@ -108,8 +111,8 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city4" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
     <TextView
         android:id="@+id/city6"
@@ -120,7 +123,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/city5" />
 
     <TextView
@@ -132,7 +135,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/city8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/city6" />
 
     <TextView
@@ -144,7 +147,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/city7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

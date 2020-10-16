@@ -34,36 +34,34 @@
 
     <TextView
         android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:gravity="center"
         android:text="@string/cityText"
         android:textColor="@color/colorText"
         android:textSize="36sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toStartOf="@+id/btn_info"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/btn_info"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <Button
         android:id="@+id/btn_info"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:background="#90000000"
         android:text="@string/btnInfo"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/city"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/city"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/saturday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city" />
 
     <TextView
         android:id="@+id/monday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -73,14 +71,15 @@
         app:layout_constraintEnd_toStartOf="@+id/status1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintStart_toEndOf="@+id/city"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tuesday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -90,13 +89,13 @@
         app:layout_constraintEnd_toStartOf="@+id/status2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/monday" />
 
     <TextView
         android:id="@+id/wednesday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -106,13 +105,13 @@
         app:layout_constraintEnd_toStartOf="@+id/status3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
     <TextView
         android:id="@+id/thursday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -122,13 +121,13 @@
         app:layout_constraintEnd_toStartOf="@+id/status4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/wednesday" />
 
     <TextView
         android:id="@+id/friday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -138,13 +137,13 @@
         app:layout_constraintEnd_toStartOf="@+id/status5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/thursday" />
 
     <TextView
         android:id="@+id/saturday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -154,13 +153,13 @@
         app:layout_constraintEnd_toStartOf="@+id/status6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/friday" />
 
     <TextView
         android:id="@+id/sunday"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/dayText"
         android:textColor="@color/colorText"
@@ -170,25 +169,26 @@
         app:layout_constraintEnd_toStartOf="@+id/status7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/saturday" />
 
     <ImageView
         android:id="@+id/status1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status2"
         app:layout_constraintEnd_toStartOf="@+id/temp1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/monday"
-        app:layout_constraintTop_toBottomOf="@+id/city"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@mipmap/cloud1" />
 
     <ImageView
         android:id="@+id/status2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status3"
         app:layout_constraintEnd_toStartOf="@+id/temp2"
@@ -199,8 +199,8 @@
 
     <ImageView
         android:id="@+id/status3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status4"
         app:layout_constraintEnd_toStartOf="@+id/temp3"
@@ -211,8 +211,8 @@
 
     <ImageView
         android:id="@+id/status4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status5"
         app:layout_constraintEnd_toStartOf="@+id/temp4"
@@ -223,8 +223,8 @@
 
     <ImageView
         android:id="@+id/status5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status6"
         app:layout_constraintEnd_toStartOf="@+id/temp5"
@@ -235,8 +235,8 @@
 
     <ImageView
         android:id="@+id/status6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toTopOf="@+id/status7"
         app:layout_constraintEnd_toStartOf="@+id/temp6"
@@ -247,8 +247,8 @@
 
     <ImageView
         android:id="@+id/status7"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/statusDes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/temp7"
@@ -260,7 +260,7 @@
     <TextView
         android:id="@+id/temp1"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -270,12 +270,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/status1"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/temp2"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -290,7 +291,7 @@
     <TextView
         android:id="@+id/temp3"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -305,7 +306,7 @@
     <TextView
         android:id="@+id/temp4"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -320,7 +321,7 @@
     <TextView
         android:id="@+id/temp5"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -335,7 +336,7 @@
     <TextView
         android:id="@+id/temp6"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"
@@ -350,7 +351,7 @@
     <TextView
         android:id="@+id/temp7"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/tempText"
         android:textColor="@color/colorText"

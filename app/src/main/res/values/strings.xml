@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Weather</string>
     <string name="searchText">Введите город</string>
+    <string name="cityText">City</string>
+    <string name="dayText">Day</string>
+    <string name="tempText">C°</string>
+    <string name="btnInfo">О городе</string>
+    <string name="backgroundDes">background</string>
+    <string name="statusDes">status_img</string>
+    <string name="searchDes">search_img</string>
+    <string name="cityInfo_link">https://www.google.com/search?q=</string>
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>
