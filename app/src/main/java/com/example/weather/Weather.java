@@ -19,10 +19,10 @@ public class Weather extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instanceCheck(savedInstanceState);
         binding = CityWeatherBinding.inflate(getLayoutInflater());
         initViews();
         setContentView(binding.getRoot());
-        logLifeStage("onCreate", "создание активити");
     }
 
     @Override
@@ -74,6 +74,16 @@ public class Weather extends AppCompatActivity {
             Uri uri = Uri.parse(getResources().getString(R.string.cityInfo_link) + binding.city.getText().toString());
             startActivity(new Intent(Intent.ACTION_VIEW, uri));
         });
+    }
+
+    private void instanceCheck(Bundle savedInstanceState) {
+        String instanceState;
+        if (savedInstanceState == null) {
+            instanceState = "Первый запуск";
+        } else instanceState = "Повторный запуск";
+        Toast.makeText(getApplicationContext(),
+                instanceState + " - активити создано",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void logLifeStage(String tag, String text) {

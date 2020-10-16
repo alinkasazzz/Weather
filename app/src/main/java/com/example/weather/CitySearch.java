@@ -18,10 +18,10 @@ public class CitySearch extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instanceCheck(savedInstanceState);
         binding = CityListBinding.inflate(getLayoutInflater());
         initViews();
         setContentView(binding.getRoot());
-        logLifeStage("onCreate", "создание активити");
     }
 
     @Override
@@ -64,6 +64,16 @@ public class CitySearch extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+    }
+
+    private void instanceCheck(Bundle savedInstanceState) {
+        String instanceState;
+        if (savedInstanceState == null) {
+            instanceState = "Первый запуск";
+        } else instanceState = "Повторный запуск";
+        Toast.makeText(getApplicationContext(),
+                instanceState + " - активити создано",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void logLifeStage(String tag, String text) {
