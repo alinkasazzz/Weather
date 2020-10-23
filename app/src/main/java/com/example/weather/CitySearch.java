@@ -1,45 +1,54 @@
 package com.example.weather;
 
-import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import com.example.weather.databinding.CityListBinding;
+import com.example.weather.databinding.CityListFragmentBinding;
 
-public class CitySearch extends AppCompatActivity {
-    private CityListBinding binding;
+public class CitySearch extends Fragment {
+    private CityListFragmentBinding binding;
+    public static final String CURRENT_CITY = "currentCity";
+    private Parcel currentParcel;
+    private boolean isLandscape;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = CityListFragmentBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        instanceCheck(savedInstanceState);
-        binding = CityListBinding.inflate(getLayoutInflater());
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initViews();
-        setContentView(binding.getRoot());
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        logLifeStage("onRestoreInstanceState", "смена ориентации экрана");
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if (savedInstanceState != null)
+            currentParcel = (Parcel) savedInstanceState.getSerializable(CURRENT_CITY);
+        else
+            currentParcel = new Parcel(getResources().getStringArray(R.array.cities)[0]);
+        if(isLandscape)
+            showCityWeather(currentParcel);
+
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        logLifeStage("onStop", "остановка предыдущей активити");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        logLifeStage("onRestart", "перезапуск активити");
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable(CURRENT_CITY, currentParcel);
+        super.onSaveInstanceState(outState);
     }
 
     private void initViews() {
@@ -58,28 +67,34 @@ public class CitySearch extends AppCompatActivity {
         for (int i = 0; i < citiesView.length; i++) {
             citiesView[i].setText(cities[i]);
             citiesView[i].setOnClickListener(v -> {
-                TextView view = (TextView) v;
-                Intent intent = new Intent(CitySearch.this, Weather.class);
-                intent.putExtra("cityName", view.getText().toString());
-                startActivity(intent);
+                TextView city = (TextView) v;
+                currentParcel = new Parcel(city.getText().toString());
+                showCityWeather(currentParcel);
+
             });
         }
     }
 
-    private void instanceCheck(Bundle savedInstanceState) {
-        String instanceState;
-        if (savedInstanceState == null) {
-            instanceState = "Первый запуск";
-        } else instanceState = "Повторный запуск";
-        Toast.makeText(getApplicationContext(),
-                instanceState + " - активити создано",
-                Toast.LENGTH_SHORT).show();
+    private void showCityWeather(Parcel parcel){
+        assert getFragmentManager() != null;
+        if(isLandscape) {
+            CityWeatherFragment cityWeatherFragment = (CityWeatherFragment) getFragmentManager().findFragmentById(R.id.city_weather);
+            if (cityWeatherFragment == null || !cityWeatherFragment.getParcel().getCityName().equals(parcel.getCityName())){
+                cityWeatherFragment = CityWeatherFragment.create(parcel);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.city_weather, cityWeatherFragment)
+                        .commit();
+            }
+        }else {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, CityWeatherFragment.create(parcel))
+                    .addToBackStack(null)
+                    .commit();
+        }
+
     }
 
-    private void logLifeStage(String tag, String text) {
-        Toast.makeText(getApplicationContext(),
-                tag + " - " + text,
-                Toast.LENGTH_SHORT).show();
-        Log.d(tag, text);
-    }
+
 }
