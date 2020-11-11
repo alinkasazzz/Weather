@@ -39,31 +39,28 @@
 
         <TextView
             android:id="@+id/city"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:background="#90000000"
+            android:gravity="center"
             android:text="@string/cityText"
             android:textColor="@color/colorText"
             android:textSize="36sp"
             android:textStyle="italic"
-            app:layout_constraintEnd_toStartOf="@+id/btn_info"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/background" />
 
         <Button
             android:id="@+id/btn_info"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:background="#90000000"
             android:text="@string/btnInfo"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/city"
+            app:layout_constraintBottom_toBottomOf="@+id/background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/city"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/monday"
@@ -171,7 +168,7 @@
             android:textColor="@color/colorText"
             android:textSize="21sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_info"
             app:layout_constraintEnd_toStartOf="@+id/status7"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -255,7 +252,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/statusDes"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_info"
             app:layout_constraintEnd_toStartOf="@+id/temp7"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sunday"
@@ -361,7 +358,7 @@
             android:textColor="@color/colorText"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/status7"

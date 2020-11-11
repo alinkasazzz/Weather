@@ -1,5 +1,6 @@
 package com.example.weather;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +14,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.weather.databinding.CityListFragmentBinding;
 
-public class CitySearch extends Fragment {
+import static com.example.weather.CityWeatherFragment.PARCEL;
+
+public class CityListFragment extends Fragment {
     private CityListFragmentBinding binding;
     public static final String CURRENT_CITY = "currentCity";
     private Parcel currentParcel;
@@ -36,13 +39,15 @@ public class CitySearch extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if (savedInstanceState != null)
+        if (savedInstanceState != null) {
             currentParcel = (Parcel) savedInstanceState.getSerializable(CURRENT_CITY);
-        else
-            currentParcel = new Parcel(getResources().getStringArray(R.array.cities)[0]);
-        if(isLandscape)
             showCityWeather(currentParcel);
-
+        } else {
+            currentParcel = new Parcel(getResources().getStringArray(R.array.cities)[0]);
+        }
+        if (isLandscape) {
+            showCityWeather(currentParcel);
+        }
     }
 
     @Override
@@ -70,31 +75,23 @@ public class CitySearch extends Fragment {
                 TextView city = (TextView) v;
                 currentParcel = new Parcel(city.getText().toString());
                 showCityWeather(currentParcel);
-
             });
         }
     }
 
-    private void showCityWeather(Parcel parcel){
+    private void showCityWeather(Parcel parcel) {
         assert getFragmentManager() != null;
-        if(isLandscape) {
+        if (isLandscape) {
             CityWeatherFragment cityWeatherFragment = (CityWeatherFragment) getFragmentManager().findFragmentById(R.id.city_weather);
-            if (cityWeatherFragment == null || !cityWeatherFragment.getParcel().getCityName().equals(parcel.getCityName())){
+            if (cityWeatherFragment == null || !cityWeatherFragment.getParcel().getCityName().equals(parcel.getCityName())) {
                 cityWeatherFragment = CityWeatherFragment.create(parcel);
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.city_weather, cityWeatherFragment)
                         .commit();
             }
-        }else {
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, CityWeatherFragment.create(parcel))
-                    .addToBackStack(null)
-                    .commit();
+        } else {
+            startActivity(new Intent(getContext(), CityWeatherActivity.class).putExtra(PARCEL, parcel));
         }
-
     }
-
-
 }
