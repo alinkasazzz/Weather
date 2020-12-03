@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Казань</item>
+        <item>Владивосток</item>
+        <item>Кемерово</item>
+        <item>Самара</item>
+        <item>Сызрань</item>
+        <item>Хабаровск</item>
+        <item>Якутск</item>
+    </string-array>
+    <string-array name="days">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+    <string-array name="temperatures">
+        <item>21°</item>
+        <item>23°</item>
+        <item>18°</item>
+        <item>19°</item>
+        <item>17°</item>
+        <item>20°</item>
+        <item>16°</item>
+    </string-array>
+    <string-array name="images">
+        <item>@drawable/cloud</item>
+        <item>@drawable/rain</item>
+        <item>@drawable/storm</item>
+        <item>@drawable/cloud</item>
+        <item>@drawable/sun</item>
+        <item>@drawable/cloud</item>
+        <item>@drawable/sun</item>
+    </string-array>
+</resources>

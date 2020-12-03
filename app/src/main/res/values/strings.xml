@@ -9,33 +9,4 @@
     <string name="statusDes">status_img</string>
     <string name="searchDes">search_img</string>
     <string name="cityInfo_link">https://www.google.com/search?q=</string>
-    <string-array name="cities">
-        <item>Москва</item>
-        <item>Санкт-Петербург</item>
-        <item>Казань</item>
-        <item>Владивосток</item>
-        <item>Кемерово</item>
-        <item>Самара</item>
-        <item>Сызрань</item>
-        <item>Хабаровск</item>
-        <item>Якутск</item>
-    </string-array>
-    <string-array name="days">
-        <item>Понедельник</item>
-        <item>Вторник</item>
-        <item>Среда</item>
-        <item>Четверг</item>
-        <item>Пятница</item>
-        <item>Суббота</item>
-        <item>Воскресенье</item>
-    </string-array>
-    <string-array name="temperature">
-        <item>21°</item>
-        <item>23°</item>
-        <item>18°</item>
-        <item>19°</item>
-        <item>17°</item>
-        <item>20°</item>
-        <item>16°</item>
-    </string-array>
 </resources>

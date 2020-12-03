@@ -29,122 +29,24 @@
         android:id="@+id/search_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/search"
+        android:background="@drawable/search"
+        android:contentDescription="@string/searchDes"
         app:layout_constraintBottom_toBottomOf="@+id/search_view"
         app:layout_constraintEnd_toEndOf="@+id/search_view"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="@+id/search_view"
-        app:layout_constraintTop_toTopOf="@+id/search_view"
-        android:contentDescription="@string/searchDes" />
+        app:layout_constraintTop_toTopOf="@+id/search_view" />
 
-    <TextView
-        android:id="@+id/city0"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_cities"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/city1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city0" />
-
-    <TextView
-        android:id="@+id/city2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city1" />
-
-    <TextView
-        android:id="@+id/city3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city2" />
-
-    <TextView
-        android:id="@+id/city4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city3" />
-
-    <TextView
-        android:id="@+id/city5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city4" />
-
-    <TextView
-        android:id="@+id/city6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city5" />
-
-    <TextView
-        android:id="@+id/city7"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/city8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city6" />
-
-    <TextView
-        android:id="@+id/city8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="@string/cityText"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city7" />
+        app:layout_constraintTop_toBottomOf="@+id/search_view"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_city"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
