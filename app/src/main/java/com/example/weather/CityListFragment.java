@@ -14,31 +14,32 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weather.RecyclerView.Adapter;
 import com.example.weather.RecyclerView.Data;
 import com.example.weather.databinding.CityListFragmentBinding;
 
+import java.util.regex.Pattern;
+
 import static com.example.weather.CityWeatherFragment.PARCEL;
 
 public class CityListFragment extends Fragment {
-
     public static final String CURRENT_CITY = "currentCity";
+    private CityListFragmentBinding binding;
     private Parcel currentParcel;
     private boolean isLandscape;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        CityListFragmentBinding binding = CityListFragmentBinding.inflate(inflater, container, false);
+        binding = CityListFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initRecyclerView(view);
+        initRecyclerView();
     }
 
     @Override
@@ -80,18 +81,17 @@ public class CityListFragment extends Fragment {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void initRecyclerView(View view) {
+    private void initRecyclerView() {
         Data data = new Data(getResources().getStringArray(R.array.cities));
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_cities);
-        recyclerView.setHasFixedSize(true);
+        binding.recyclerCities.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerCities.setLayoutManager(layoutManager);
 
-        DividerItemDecoration decoration = new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration decoration = new DividerItemDecoration(binding.recyclerCities.getContext(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(getResources().getDrawable(R.drawable.separator));
-        recyclerView.addItemDecoration(decoration);
+        binding.recyclerCities.addItemDecoration(decoration);
 
         Adapter adapter = new Adapter(Adapter.CITY_LIST, data);
         adapter.setClickable(v -> {
@@ -99,6 +99,31 @@ public class CityListFragment extends Fragment {
             currentParcel = new Parcel(city.getText().toString());
             showCityWeather(currentParcel);
         });
-        recyclerView.setAdapter(adapter);
+        binding.recyclerCities.setAdapter(adapter);
+    }
+
+    private void initSearch() {
+        Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+        binding.searchText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) return;
+            TextView search = (TextView) v;
+            validate(search, pattern);
+        });
+
+    }
+
+    private void validate(TextView textView, Pattern pattern) {
+        String value = textView.getText().toString();
+        if (pattern.matcher(value).matches()) {
+            hideError(textView);
+        } else showError(textView);
+    }
+
+    private void showError(TextView textView) {
+        textView.setError("Город введён неверно");
+    }
+
+    private void hideError(TextView textView) {
+        textView.setError(null);
     }
 }
