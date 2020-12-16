@@ -26,6 +26,7 @@ import static com.example.weather.CityWeatherFragment.PARCEL;
 public class CityListFragment extends Fragment {
     public static final String CURRENT_CITY = "currentCity";
     private CityListFragmentBinding binding;
+    private Data data;
     private Parcel currentParcel;
     private boolean isLandscape;
 
@@ -40,6 +41,7 @@ public class CityListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
+        initSearch();
     }
 
     @Override
@@ -82,7 +84,7 @@ public class CityListFragment extends Fragment {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void initRecyclerView() {
-        Data data = new Data(getResources().getStringArray(R.array.cities));
+        data = new Data(getResources().getStringArray(R.array.cities));
 
         binding.recyclerCities.setHasFixedSize(true);
 
@@ -103,7 +105,7 @@ public class CityListFragment extends Fragment {
     }
 
     private void initSearch() {
-        Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+        Pattern pattern = Pattern.compile("^[А-Я][а-я]{2,}$");
         binding.searchText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) return;
             TextView search = (TextView) v;
@@ -114,9 +116,18 @@ public class CityListFragment extends Fragment {
 
     private void validate(TextView textView, Pattern pattern) {
         String value = textView.getText().toString();
-        if (pattern.matcher(value).matches()) {
+        if (pattern.matcher(value).matches() && haveCity(value)) {
             hideError(textView);
+            currentParcel = new Parcel(value);
+            showCityWeather(currentParcel);
         } else showError(textView);
+    }
+
+    private boolean haveCity(String value) {
+        for (int i = 0; i < data.getCities().length; i++) {
+            if (value.equals(data.getCities()[i])) return true;
+        }
+        return false;
     }
 
     private void showError(TextView textView) {
