@@ -115,12 +115,14 @@ public class CityListFragment extends Fragment {
     }
 
     private void validate(TextView textView, Pattern pattern) {
-        String value = textView.getText().toString();
+        String value = textView.getText().toString().trim();
         if (pattern.matcher(value).matches() && haveCity(value)) {
             hideError(textView);
             currentParcel = new Parcel(value);
             showCityWeather(currentParcel);
         } else showError(textView);
+
+        if (value.equals("")) hideError(textView);
     }
 
     private boolean haveCity(String value) {
