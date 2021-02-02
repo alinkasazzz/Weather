@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/currentDay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/timeText"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/currentStatus"
+            app:layout_constraintEnd_toStartOf="@+id/currentStatus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/currentStatus"
+            app:layout_constraintVertical_bias="0.0" />
+
         <ImageView
-            android:id="@+id/background"
+            android:id="@+id/currentStatus"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="@string/backgroundDes"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/statusDes"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_weather_hourly"
+            app:layout_constraintEnd_toStartOf="@+id/currentTemperature"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/currentDay"
+            app:layout_constraintTop_toBottomOf="@+id/city" />
+
+        <TextView
+            android:id="@+id/currentTemperature"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/tempText"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/currentStatus"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/background" />
-
-        <FrameLayout
-            android:id="@+id/background_shadow"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#50000000"
-            app:layout_constraintBottom_toBottomOf="@+id/background"
-            app:layout_constraintEnd_toEndOf="@+id/background"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background"
-            app:layout_constraintVertical_bias="0.0">
-
-        </FrameLayout>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/currentStatus"
+            app:layout_constraintTop_toTopOf="@+id/currentStatus" />
 
         <TextView
             android:id="@+id/city"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="#90000000"
+            android:background="#EC6C53"
             android:gravity="center"
             android:text="@string/cityText"
             android:textColor="@color/colorText"
@@ -50,26 +64,54 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/line40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_weather"
+            android:id="@+id/recycler_weather_hourly"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/border_top_bottom"
+            app:layout_constraintBottom_toTopOf="@+id/line55"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/line40"
+            tools:listitem="@layout/item_weather_hourly">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/line55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_weather_daily"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city"
-            tools:listitem="@layout/item_weather"/>
+            app:layout_constraintTop_toBottomOf="@+id/recycler_weather_hourly"
+            tools:listitem="@layout/item_weather_daily" />
 
         <Button
             android:id="@+id/btn_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#90000000"
+            android:background="#EC6C53"
             android:text="@string/btnInfo"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

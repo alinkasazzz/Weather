@@ -1,0 +1,72 @@
+[
+  {
+    "id": 524894,
+    "name": "Moscow",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 37.606667,
+      "lat": 55.761665
+    }
+  },
+  {
+    "id": 516215,
+    "name": "Odintsovo",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 37.277729,
+      "lat": 55.677979
+    }
+  },
+  {
+    "id": 550280,
+    "name": "Khimki",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 37.4375,
+      "lat": 55.901669
+    }
+  },
+  {
+    "id": 498817,
+    "name": "Saint Petersburg",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 30.264168,
+      "lat": 59.894444
+    }
+  },
+  {
+    "id": 551487,
+    "name": "Kazan",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 49.122139,
+      "lat": 55.788738
+    }
+  },
+  {
+    "id": 491422,
+    "name": "Sochi",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 39.730278,
+      "lat": 43.599998
+    }
+  },
+  {
+    "id": 480716,
+    "name": "Tuapse",
+    "state": "",
+    "country": "RU",
+    "coord": {
+      "lon": 39.074165,
+      "lat": 44.112499
+    }
+  }
+]

@@ -11,7 +11,8 @@ import com.example.weather.R;
 public class Adapter extends RecyclerView.Adapter<Holder> {
 
     public static final String CITY_LIST = "CityList";
-    public static final String CITY_WEATHER = "CityWeather";
+    public static final String CITY_WEATHER_DAILY = "CityWeatherDaily";
+    public static final String CITY_WEATHER_HOURLY = "CityWeatherHourly";
 
     private final String fragment;
     private final Data data;
@@ -25,23 +26,33 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (fragment.equals(CITY_LIST)) {
-            return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_city, parent, false));
-        } else if (fragment.equals(CITY_WEATHER)) {
-            return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather, parent, false));
+        switch (fragment) {
+            case CITY_LIST:
+                return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_city, parent, false));
+            case CITY_WEATHER_DAILY:
+                return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_daily, parent, false));
+            case CITY_WEATHER_HOURLY:
+                return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_hourly, parent, false));
         }
         return new Holder(parent);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        if (fragment.equals(CITY_LIST)) {
-            holder.setData(data.getCities());
-            holder.setOnClickListener(holder, clickable);
-        } else if (fragment.equals(CITY_WEATHER)) {
-            holder.setData(data.getCityDays(), data.getStatusImages(), data.getCityTemperatures());
+        switch (fragment) {
+            case CITY_LIST:
+                holder.setDataCities(data.getCities());
+                holder.setOnClickListener(holder, clickable);
+                break;
+            case CITY_WEATHER_DAILY:
+                holder.setDataDaily(data.getTimes(), data.getIcons(), data.getCityTemperatures());
+                break;
+            case CITY_WEATHER_HOURLY:
+                holder.setDataHourly(data.getTimes(), data.getIcons(), data.getCityTemperatures());
+                break;
         }
     }
+
 
     @Override
     public int getItemCount() {
