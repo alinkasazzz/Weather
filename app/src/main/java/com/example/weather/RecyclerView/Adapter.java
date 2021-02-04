@@ -46,6 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
                 break;
             case CITY_WEATHER_DAILY:
                 holder.setDataDaily(data.getTimes(), data.getIcons(), data.getCityTemperatures());
+                holder.adaptiveLandscape(holder.itemView);
                 break;
             case CITY_WEATHER_HOURLY:
                 holder.setDataHourly(data.getTimes(), data.getIcons(), data.getCityTemperatures());

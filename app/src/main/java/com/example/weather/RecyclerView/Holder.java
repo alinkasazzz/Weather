@@ -1,8 +1,10 @@
 package com.example.weather.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ public class Holder extends RecyclerView.ViewHolder {
     private final ImageView statusHourly;
     private final TextView cityTemperatureDaily;
     private final TextView cityTemperatureHourly;
+    private final LinearLayout dailyContainer;
 
     public Holder(@NonNull View itemView) {
         super(itemView);
@@ -33,7 +36,7 @@ public class Holder extends RecyclerView.ViewHolder {
         statusHourly = itemView.findViewById(R.id.status_hourly);
         cityTemperatureDaily = itemView.findViewById(R.id.city_temperature_daily);
         cityTemperatureHourly = itemView.findViewById(R.id.city_temperature_hourly);
-
+        dailyContainer = itemView.findViewById(R.id.daily_container);
     }
 
     public TextView getCity() {
@@ -87,5 +90,10 @@ public class Holder extends RecyclerView.ViewHolder {
         holder.itemView.setOnClickListener(clickable::click);
     }
 
+    public void adaptiveLandscape(View view) {
+        if (view.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            dailyContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100));
+        }
+    }
 
 }
