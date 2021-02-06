@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Weather</string>
+    <string name="app_name">Погода</string>
     <string name="searchText">Введите город</string>
+    <string name="searchDialog">Поиск</string>
+    <string name="searchDialogDone">Готово</string>
     <string name="cityText">City</string>
     <string name="timeText">Time</string>
     <string name="tempText">°C</string>

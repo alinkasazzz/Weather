@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weather.BuildConfig;
-import com.example.weather.CityInfo.CityInfoFragment;
 import com.example.weather.JSON.City;
 import com.example.weather.JSON.WeatherPOJO;
 import com.example.weather.R;
@@ -32,6 +33,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -50,6 +52,7 @@ public class CityWeatherFragment extends Fragment {
     private static float[] temperatures;
     private CityWeatherFragmentBinding binding;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class CityWeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViews();
+        initToolBar();
         loadForecast();
     }
 
@@ -125,23 +128,18 @@ public class CityWeatherFragment extends Fragment {
         }
     }
 
-    private void initViews() {
+    private void initToolBar() {
         cityName = getCity().getName();
-        binding.city.setText(cityName);
-        binding.btnInfo.setOnClickListener(v -> {
-            assert getFragmentManager() != null;
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.city_weather, new CityInfoFragment())
-                    .addToBackStack(null)
-                    .commit();
-        });
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(cityName);
     }
 
-    private void initRecyclerDaily(WeatherPOJO weatherPOJO){
+    private void initRecyclerDaily(WeatherPOJO weatherPOJO) {
         setTimesDaily(weatherPOJO);
         setWeatherIconsDaily(weatherPOJO);
         setTemperaturesDaily(weatherPOJO);
-        Data data = new Data(times, icons, temperatures, daysLength-1);
+        Data data = new Data(times, icons, temperatures, daysLength - 1);
         RecyclerView recyclerView = binding.recyclerWeatherDaily;
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(binding.getRoot().getContext(), LinearLayoutManager.VERTICAL, false);
@@ -150,7 +148,7 @@ public class CityWeatherFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void initRecyclerHourly(WeatherPOJO weatherPOJO){
+    private void initRecyclerHourly(WeatherPOJO weatherPOJO) {
         setTimesHourly(weatherPOJO);
         setWeatherIconsHourly(weatherPOJO);
         setTemperaturesHourly(weatherPOJO);
