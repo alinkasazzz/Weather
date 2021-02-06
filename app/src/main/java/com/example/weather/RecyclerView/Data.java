@@ -1,49 +1,53 @@
 package com.example.weather.RecyclerView;
 
-import android.content.res.TypedArray;
+import com.example.weather.JSON.City;
+
+import java.util.ArrayList;
 
 public class Data {
 
-    private String[] cities;
-    private String[] cityDays;
-    private TypedArray statusImages;
-    private String[] cityTemperatures;
+    private ArrayList<City> cities;
+    private String[] times;
+    private String[] icons;
+    private float[] cityTemperatures;
     private final int size;
 
-    public Data(String[] cities) {
+    public Data(ArrayList<City> cities) {
         this.cities = cities;
-        size = cities.length;
+        size = cities.size();
     }
 
-    public Data(String[] cityDays, TypedArray statusImg, String[] cityTemperature) {
-        this.cityDays = cityDays;
-        this.statusImages = statusImg;
+    public Data(String[] times, String[] icons, float[] cityTemperature, int size) {
+        this.times = times;
+        this.icons = icons;
         this.cityTemperatures = cityTemperature;
-        size = cityDays.length;
+        this.size = size;
+    }
+
+    public Data(String[] times, String[] icons, float[] cityTemperature) {
+        this.times = times;
+        this.icons = icons;
+        this.cityTemperatures = cityTemperature;
+        this.size = times.length;
     }
 
     public int getSize() {
         return size;
     }
 
-    public String[] getCities() {
+    public ArrayList<City> getCities() {
         return cities;
     }
 
-    public String[] getCityDays() {
-        return cityDays;
+    public String[] getTimes() {
+        return times;
     }
 
-    public int[] getStatusImages() {
-        int length = statusImages.length();
-        int[] answer = new int[length];
-        for (int i = 0; i < length; i++) {
-            answer[i] = statusImages.getResourceId(i, 0);
-        }
-        return answer;
-    }
-
-    public String[] getCityTemperatures() {
+    public float[] getCityTemperatures() {
         return cityTemperatures;
+    }
+
+    public String[] getIcons() {
+        return icons;
     }
 }

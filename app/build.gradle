@@ -18,9 +18,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("api_key.properties").newDataInputStream())
+            def weatherApiKey = properties.getProperty("weather_api_key", "")
+            it.buildConfigField "String", "WEATHER_API_KEY", weatherApiKey
+        }
+        debug {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("api_key.properties").newDataInputStream())
+            def weatherApiKey = properties.getProperty("weather_api_key", "")
+            it.buildConfigField "String", "WEATHER_API_KEY_DEBUG", weatherApiKey
         }
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
     compileOptions {
@@ -32,9 +43,11 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

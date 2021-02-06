@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/background"
+        <TextView
+            android:id="@+id/currentDay"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="@string/backgroundDes"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:gravity="center"
+            android:text="@string/timeText"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/currentStatus"
+            app:layout_constraintEnd_toStartOf="@+id/currentStatus"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/background" />
+            app:layout_constraintVertical_bias="0.0" />
 
-        <FrameLayout
-            android:id="@+id/background_shadow"
+        <ImageView
+            android:id="@+id/currentStatus"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#50000000"
-            app:layout_constraintBottom_toBottomOf="@+id/background"
-            app:layout_constraintEnd_toEndOf="@+id/background"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background"
-            app:layout_constraintVertical_bias="0.0">
-
-        </FrameLayout>
+            android:contentDescription="@string/statusDes"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_weather_hourly"
+            app:layout_constraintEnd_toStartOf="@+id/currentTemperature"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/currentDay"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/city"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="#90000000"
-            android:gravity="center"
-            android:text="@string/cityText"
-            android:textColor="@color/colorText"
-            android:textSize="36sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_weather"
+            android:id="@+id/currentTemperature"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_info"
+            android:gravity="center"
+            android:text="@string/tempText"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/currentStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/currentStatus"
+            app:layout_constraintTop_toTopOf="@+id/currentStatus" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/line30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_weather_hourly"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/border_top_bottom"
+            app:layout_constraintBottom_toTopOf="@+id/line60"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city"
-            tools:listitem="@layout/item_weather"/>
+            app:layout_constraintTop_toTopOf="@+id/line30"
+            tools:listitem="@layout/item_weather_hourly">
 
-        <Button
-            android:id="@+id/btn_info"
-            android:layout_width="0dp"
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/line60"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#90000000"
-            android:text="@string/btnInfo"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/background"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_weather_daily"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_weather_hourly"
+            tools:listitem="@layout/item_weather_daily" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

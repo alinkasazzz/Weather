@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">Weather</string>
+    <string name="app_name">Погода</string>
     <string name="searchText">Введите город</string>
+    <string name="searchDialog">Поиск</string>
+    <string name="searchDialogDone">Готово</string>
     <string name="cityText">City</string>
-    <string name="dayText">Day</string>
-    <string name="tempText">C°</string>
+    <string name="timeText">Time</string>
+    <string name="tempText">°C</string>
     <string name="btnInfo">О городе</string>
     <string name="backgroundDes">background</string>
     <string name="statusDes">status_img</string>
